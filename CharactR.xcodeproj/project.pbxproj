@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7DA22B9B21C81CA900A25553 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA22B9A21C81CA900A25553 /* AddViewController.swift */; };
 		E1AA4A8B21C1087D004AED6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AA4A8A21C1087D004AED6D /* AppDelegate.swift */; };
 		E1AA4A8D21C1087D004AED6D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AA4A8C21C1087D004AED6D /* ViewController.swift */; };
 		E1AA4A9021C1087D004AED6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1AA4A8E21C1087D004AED6D /* Main.storyboard */; };
@@ -109,6 +110,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7DA22B9A21C81CA900A25553 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		E1AA4A8721C1087D004AED6D /* CharactR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CharactR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1AA4A8A21C1087D004AED6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1AA4A8C21C1087D004AED6D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				E1AA4A9321C1087E004AED6D /* LaunchScreen.storyboard */,
 				E1AA4A9621C1087E004AED6D /* Info.plist */,
 				E1AA4AD821C10A01004AED6D /* DbGetter.swift */,
+				7DA22B9A21C81CA900A25553 /* AddViewController.swift */,
 			);
 			path = CharactR;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DA22B9B21C81CA900A25553 /* AddViewController.swift in Sources */,
 				E1AA4A8D21C1087D004AED6D /* ViewController.swift in Sources */,
 				E1AA4ADC21C10DE1004AED6D /* Symbol.swift in Sources */,
 				E1AA4A8B21C1087D004AED6D /* AppDelegate.swift in Sources */,

@@ -76,6 +76,7 @@ class DbGetter{
         let newInsertion = self.symbol_table.insert(symbol_image <- s.Symbol, symbol_signification <- s.Signification, symbol_commentary <- s.Commentary)
         do{
             try database.run(newInsertion);
+            print("\(s.Symbol) has been inserted in database")
         }catch{
             print(error)
         }
