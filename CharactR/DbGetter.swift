@@ -10,6 +10,7 @@ import UIKit
 import SQLite
 
 class DbGetter{
+    
     private static var instance: DbGetter?;
     private var database: Connection!
     private let symbol_table = Table("symbol")
