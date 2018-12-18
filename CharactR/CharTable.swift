@@ -29,7 +29,6 @@ class CharTable: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
-        print("salut")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -45,17 +44,15 @@ class CharTable: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return FAKE_DATA.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //Transtypage pour avoir la classe définie dans le projet (CharCell) et si ça marche pas, on fait terminer l'application
+        //Transtypage pour avoir la classe définie dans le projet (CharCell) et si ça marche pas -> erreur
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cell_identifier, for: indexPath) as? CharCell else {
             fatalError("Could not cast into CharCell")
         }
@@ -63,7 +60,7 @@ class CharTable: UITableViewController {
         let char = FAKE_DATA[indexPath.row]
         
         cell.labelSymbol.text = char.Symbol
-        cell.labelMeaning.text = char.Commentary
+        cell.labelMeaning.text = char.Signification
         
         return cell
     }
