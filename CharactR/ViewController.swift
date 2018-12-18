@@ -9,10 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet var frontCard: UIView!
+    @IBOutlet var backCard: UIView!
+    @IBOutlet var centerConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     
+    private var centerConstraintDefault = CGFloat(0)
     private var menuIsHidden = true
+    private var currentCardIsBack = false
     private let dbInstance: DbGetter = DbGetter.getInstance()
     
     override func viewDidLoad() {
@@ -26,13 +31,26 @@ class ViewController: UIViewController {
     private func toggleMenu(){
         if menuIsHidden{
             leadingConstraint.constant = 0
+            centerConstraint.isActive = false
         }else{
             leadingConstraint.constant = -200
+            centerConstraint.isActive = true
+
         }
         UIView.animate(withDuration: 0.3){
             self.view.layoutIfNeeded()
         }
         menuIsHidden = !menuIsHidden
     }
+    @IBAction func flipCard(_ sender: UIButton) {
+        let toView = currentCardIsBack ? frontCard! : backCard!
+        let fromView = currentCardIsBack ? backCard! : frontCard!
+        
+        UIView.transition(from: fromView, to: toView, duration: 1, options: .transitionFlipFromRight,completion: nil)
+        currentCardIsBack = !currentCardIsBack
+        
+        
+    }
+    
 }
 
