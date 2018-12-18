@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         let toView = currentCardIsBack ? frontCard! : backCard!
         let fromView = currentCardIsBack ? backCard! : frontCard!
         
-        UIView.transition(from: fromView, to: toView, duration: 1, options: .transitionFlipFromRight, animation:completion: nil)
+        UIView.transition(from: fromView, to: toView, duration: 1, options: .transitionFlipFromRight,completion: nil)
         currentCardIsBack = !currentCardIsBack
         
         

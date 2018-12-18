@@ -173,6 +173,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="backCard" destination="LkC-cF-xYP" id="ssV-Ll-a33"/>
+                        <outlet property="centerConstraint" destination="G0g-WW-Smp" id="0ji-rG-vxw"/>
                         <outlet property="frontCard" destination="dfi-Ek-Lzj" id="nsU-PH-a72"/>
                         <outlet property="leadingConstraint" destination="not-vP-MR5" id="mhY-Ib-Pm7"/>
                         <outlet property="menuView" destination="JcM-LS-rOW" id="Xo9-8p-MrS"/>
