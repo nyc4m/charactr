@@ -11,6 +11,7 @@ import UIKit
 class CharCell: UITableViewCell {
 
     
+
     @IBOutlet weak var labelSymbol: UILabel!
     @IBOutlet weak var labelMeaning: UILabel!
     
