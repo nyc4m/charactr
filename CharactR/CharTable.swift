@@ -64,6 +64,12 @@ class CharTable: UITableViewController {
         
         return cell
     }
+    
+    //Utilisé pour redimensionné la hauteur d'une ligne, parce que depuis le storyboard ça marche pas
+    //90 c'est arbitraire, c'est juste pour afficher les deux labels
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
 
 
     /*
