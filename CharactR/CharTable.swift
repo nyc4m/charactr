@@ -15,15 +15,11 @@ import UIKit
 
 class CharTable: UITableViewController {
     
-    var FAKE_DATA: [Symbol] = []
+    var DATAS: [Symbol] = []
     private let cell_identifier = "char_cell"
     
     private func loadData() {
-        FAKE_DATA.append(Symbol(symbol: "Yo", signification: "qzfqzfqf", commentary: ""))
-        FAKE_DATA.append(Symbol(symbol: "Ye", signification: "qzfqzfqf", commentary: ""))
-        FAKE_DATA.append(Symbol(symbol: "Ya", signification: "qzfqzfqf", commentary: ""))
-        FAKE_DATA.append(Symbol(symbol: "Yi", signification: "qzfqzfqf", commentary: ""))
-        print("fake data loaded")
+        DATAS = DbGetter.getInstance().getAllSymbols()
     }
 
     override func viewDidLoad() {
@@ -48,7 +44,7 @@ class CharTable: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return FAKE_DATA.count
+        return DATAS.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,7 +53,7 @@ class CharTable: UITableViewController {
             fatalError("Could not cast into CharCell")
         }
         
-        let char = FAKE_DATA[indexPath.row]
+        let char = DATAS[indexPath.row]
         
         cell.labelSymbol.text = char.Symbol
         cell.labelMeaning.text = char.Signification

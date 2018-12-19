@@ -50,11 +50,20 @@ class DbGetter{
             }
             do{
                 try database.run(createTable)
+                self.insertFakeDatas()
             }catch{
                 print (error)
             }
         }
         
+    }
+    
+    public func insertFakeDatas(){
+        self.insertSymbol(s: Symbol(symbol: "Yo", signification: "qzfqzfqf", commentary: ""))
+        self.insertSymbol(s: Symbol(symbol: "Ye", signification: "qzfqzfqf", commentary: ""))
+        self.insertSymbol(s: Symbol(symbol: "Ya", signification: "qzfqzfqf", commentary: ""))
+        self.insertSymbol(s: Symbol(symbol: "Yi", signification: "qzfqzfqf", commentary: ""))
+        print("fake data loaded")
     }
     
     public func reinitTable(){

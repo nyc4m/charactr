@@ -9,6 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet var btn_back: UIButton!
+    @IBOutlet var btn_front: UIButton!
+    @IBOutlet var card: UIView!
     @IBOutlet var frontCard: UIView!
     @IBOutlet var backCard: UIView!
     @IBOutlet var centerConstraint: NSLayoutConstraint!
@@ -19,10 +22,12 @@ class ViewController: UIViewController {
     private var menuIsHidden = true
     private var currentCardIsBack = false
     private let dbInstance: DbGetter = DbGetter.getInstance()
+    private var currentSymbol: Symbol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         menuView.layer.shadowOpacity = 0.5
+        self.randomCard()
     }
 
     @IBAction func menuTap(_ sender: UIBarButtonItem) {
@@ -44,13 +49,20 @@ class ViewController: UIViewController {
     }
     @IBAction func flipCard(_ sender: UIButton) {
         let toView = currentCardIsBack ? frontCard! : backCard!
-        let fromView = currentCardIsBack ? backCard! : frontCard!
+         let fromView = currentCardIsBack ? backCard! : frontCard!
+        UIView.transition(with: fromView, duration: 1.0, options: [.transitionFlipFromRight, .showHideTransitionViews], animations: {
+            fromView.isHidden = true
+        })
         
-        UIView.transition(from: fromView, to: toView, duration: 1, options: .transitionFlipFromRight,completion: nil)
+        UIView.transition(with: toView, duration: 1.0, options: [.transitionFlipFromRight, .showHideTransitionViews], animations: {
+            toView.isHidden = false
+        })
         currentCardIsBack = !currentCardIsBack
-        
-        
     }
-    
+    private func randomCard(){
+        let symbols = dbInstance.getAllSymbols()
+        let randomNumber = Int(arc4random_uniform(UInt32(symbols.count)))
+        self.currentSymbol = dbInstance.getAllSymbols()[randomNumber]
+    }
 }
 

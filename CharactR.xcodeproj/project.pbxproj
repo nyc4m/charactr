@@ -13,6 +13,7 @@
 		7DF52CB021C9048400B90C6D /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF52C6D21C9042400B90C6D /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DF52CB521C9090100B90C6D /* CharCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF52CB421C9090100B90C6D /* CharCell.swift */; };
 		7DF52CB721C90B0100B90C6D /* CharTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF52CB621C90B0100B90C6D /* CharTable.swift */; };
+		E140FE9121CA60E100DEFDF2 /* DetailSymbolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E140FE9021CA60E100DEFDF2 /* DetailSymbolViewController.swift */; };
 		E1AA4A8B21C1087D004AED6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AA4A8A21C1087D004AED6D /* AppDelegate.swift */; };
 		E1AA4A8D21C1087D004AED6D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AA4A8C21C1087D004AED6D /* ViewController.swift */; };
 		E1AA4A9021C1087D004AED6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1AA4A8E21C1087D004AED6D /* Main.storyboard */; };
@@ -216,6 +217,7 @@
 		7DF52C7A21C9044800B90C6D /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		7DF52CB421C9090100B90C6D /* CharCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharCell.swift; sourceTree = "<group>"; };
 		7DF52CB621C90B0100B90C6D /* CharTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharTable.swift; sourceTree = "<group>"; };
+		E140FE9021CA60E100DEFDF2 /* DetailSymbolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSymbolViewController.swift; sourceTree = "<group>"; };
 		E1AA4A8721C1087D004AED6D /* CharactR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CharactR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1AA4A8A21C1087D004AED6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1AA4A8C21C1087D004AED6D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				E1AA4A8C21C1087D004AED6D /* ViewController.swift */,
 				E1AA4A8E21C1087D004AED6D /* Main.storyboard */,
 				7DF52CB621C90B0100B90C6D /* CharTable.swift */,
+				E140FE9021CA60E100DEFDF2 /* DetailSymbolViewController.swift */,
 				7DF52CB421C9090100B90C6D /* CharCell.swift */,
 				E1AA4A9121C1087E004AED6D /* Assets.xcassets */,
 				E1AA4A9321C1087E004AED6D /* LaunchScreen.storyboard */,
@@ -680,6 +683,7 @@
 				E1AA4A8B21C1087D004AED6D /* AppDelegate.swift in Sources */,
 				E1AA4AD921C10A01004AED6D /* DbGetter.swift in Sources */,
 				7DF52CB721C90B0100B90C6D /* CharTable.swift in Sources */,
+				E140FE9121CA60E100DEFDF2 /* DetailSymbolViewController.swift in Sources */,
 				7DF52CB521C9090100B90C6D /* CharCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

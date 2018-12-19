@@ -1,21 +1,22 @@
 //
-//  AddViewController.swift
+//  DetailSymbolViewController.swift
 //  CharactR
 //
-//  Created by PRUNOT BAPTISTE on 17/12/2018.
+//  Created by MADELINE ALEXANDRE on 19/12/2018.
 //  Copyright © 2018 MADELINE ALEXANDRE. All rights reserved.
 //
 
 import UIKit
 
-class AddViewController: UIViewController {
+class DetailSymbolViewController: UIViewController {
 
-    @IBOutlet weak var txt_symbol: UITextField!
-    @IBOutlet weak var txt_meaning: UITextView!
+    @IBOutlet weak var tv_signification: UITextView!
+    @IBOutlet weak var tv_notePerso: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setBorder(txtView: tv_signification)
+        setBorder(txtView: tv_notePerso)
         // Do any additional setup after loading the view.
     }
 
@@ -23,7 +24,12 @@ class AddViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    private func setBorder(txtView: UITextView){
+        let borderColor : UIColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
+        txtView.layer.borderWidth = 0.5
+        txtView.layer.borderColor = borderColor.cgColor
+        txtView.layer.cornerRadius = 5.0
+    }
 
     /*
     // MARK: - Navigation
@@ -34,10 +40,5 @@ class AddViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func onValidate(_ sender: UIButton) {
-        let symbol = Symbol(symbol: txt_symbol.text!, signification: txt_meaning.text!, commentary: "")
-        
-        DbGetter.getInstance().insertSymbol(s: symbol)
-        print("salut")
-}
+
 }
