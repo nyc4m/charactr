@@ -18,6 +18,8 @@ class CharTable: UITableViewController {
     var DATAS: [Symbol] = []
     private let cell_identifier = "char_cell"
     
+    private var selected: Symbol?
+    
     private func loadData() {
         DATAS = DbGetter.getInstance().getAllSymbols()
     }
@@ -43,6 +45,18 @@ class CharTable: UITableViewController {
         return 1
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let controller = segue.destination as? DetailSymbolViewController else {
+            fatalError("couldn't cast in correct type")
+        }
+        
+        controller.tv_signification.text = selected?.Signification
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selected = DATAS[indexPath.row]
+    }
+        
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DATAS.count
     }
