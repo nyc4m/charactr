@@ -15,7 +15,7 @@ class AddViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setBorder(txtView: txt_meaning)
         // Do any additional setup after loading the view.
     }
 
@@ -35,9 +35,16 @@ class AddViewController: UIViewController {
     }
     */
     @IBAction func onValidate(_ sender: UIButton) {
-        let symbol = Symbol(id: DbGetter.getInstance().NextPK, symbol: txt_symbol.text!, signification: txt_meaning.text!, commentary: "")
-        
-        DbGetter.getInstance().insertSymbol(s: symbol)
-        print("salut")
-}
+        let symbol = Symbol(symbol: txt_symbol.text!, signification: txt_meaning.text!, commentary: "")
+        let done = DbGetter.getInstance().insertSymbol(s: symbol)
+        if done{
+            navigationController?.popToRootViewController(animated: true)
+        }
+    }
+    private func setBorder(txtView: UITextView){
+        let borderColor : UIColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
+        txtView.layer.borderWidth = 0.5
+        txtView.layer.borderColor = borderColor.cgColor
+        txtView.layer.cornerRadius = 5.0
+    }
 }

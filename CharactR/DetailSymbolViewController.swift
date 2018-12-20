@@ -15,6 +15,7 @@ class DetailSymbolViewController: UIViewController {
     @IBOutlet weak var tv_symbol: UITextField!
     
     var symbol, signification, commentary: String?
+    var id: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,5 +52,16 @@ class DetailSymbolViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func updateDatas(_ sender: UIButton) {
+        self.symbol = self.tv_symbol.text
+        self.signification = self.tv_signification.text
+        self.commentary = self.tv_notePerso.text
+        let done = DbGetter.getInstance().updateSymbol(s: Symbol(id: self.id!,symbol: self.symbol!, signification: self.signification!, commentary: self.commentary!))
+        if(done){
+            navigationController?.popToRootViewController(animated: true)
+        }
+    }
+    
 
 }

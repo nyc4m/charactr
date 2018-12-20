@@ -49,6 +49,7 @@ class CharTable: UITableViewController {
         guard let controller = segue.destination as? DetailSymbolViewController else {
             fatalError("couldn't cast in correct type")
         }
+        controller.id = selected?.Id
         controller.signification = selected?.Signification
         controller.symbol = selected?.Symbol
         controller.commentary = selected?.Commentary

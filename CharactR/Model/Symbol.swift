@@ -51,8 +51,15 @@ class Symbol {
         self.commentary = commentary
     }
     
+    init(symbol: String, signification: String, commentary: String){
+        self.id = -1
+        self.symbol = symbol
+        self.signification = signification
+        self.commentary = commentary
+    }
+    
     func stringify()->String{
-        return "Symbol : \(self.symbol), signification : \(self.signification), commentary : \(self.commentary)"
+        return "Symbol (id: \(self.id)) is \(self.symbol), signification : \(self.signification), commentary : \(self.commentary)"
     }
     
     

@@ -20,15 +20,6 @@ class DbGetter{
     private let symbol_commentary = Expression<String>("commentary")
     private var table_created:Bool = false
     
-    private var pk = 1
-    var NextPK: Int {
-        get {
-            //Faut trouver une meilleure façon, au redémarrage ce sera réinitialisé
-            self.pk = pk + 1
-            return pk
-        }
-    }
-    
     private init(){
         do {
             let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -68,10 +59,10 @@ class DbGetter{
     }
     
     public func insertFakeDatas(){
-        self.insertSymbol(s: Symbol(id: NextPK, symbol: "汉语", signification: "qzfqzfqf", commentary: ""))
-        self.insertSymbol(s: Symbol(id: NextPK, symbol: "Ye", signification: "qzfqzfqf", commentary: ""))
-        self.insertSymbol(s: Symbol(id: NextPK, symbol: "Ya", signification: "qzfqzfqf", commentary: ""))
-        self.insertSymbol(s: Symbol(id: NextPK, symbol: "Yi", signification: "qzfqzfqf", commentary: ""))
+        self.insertSymbol(s: Symbol(symbol: "汉语", signification: "qzfqzfqf", commentary: ""))
+        self.insertSymbol(s: Symbol(symbol: "Ye", signification: "qzfqzfqf", commentary: ""))
+        self.insertSymbol(s: Symbol(symbol: "Ya", signification: "qzfqzfqf", commentary: ""))
+        self.insertSymbol(s: Symbol(symbol: "Yi", signification: "qzfqzfqf", commentary: ""))
         print("fake data loaded")
     }
     
@@ -89,27 +80,43 @@ class DbGetter{
         }
     }
     
-    public func insertSymbol(s: Symbol){
+    public func insertSymbol(s: Symbol)->Bool{
         self.initTable()
-        let newInsertion = self.symbol_table.insert(symbol_id <- s.Id, symbol_image <- s.Symbol, symbol_signification <- s.Signification, symbol_commentary <- s.Commentary)
+        let newInsertion = self.symbol_table.insert(symbol_image <- s.Symbol, symbol_signification <- s.Signification, symbol_commentary <- s.Commentary)
         do{
             try database.run(newInsertion);
-            print("\(s.Symbol) has been inserted in database")
+            print("\(s.stringify()) has been inserted in database")
+            return true
         }catch{
             print(error)
         }
+        return false
     }
     
-    public func removeSymbol(s: Symbol){
+    public func removeSymbol(s: Symbol)->Bool{
         if table_created{
             let selectedRow = self.symbol_table.filter(self.symbol_image == s.Symbol && self.symbol_signification == s.Signification && self.symbol_commentary == s.Commentary)
             let remove = selectedRow.delete()
             do{
                 try database.run(remove)
+                return true
             }catch{
                 print (error)
             }
         }
+        return false
+    }
+    public func updateSymbol(s: Symbol)->Bool{
+        if(s.Id != -1){
+            let symbolToUpdate = symbol_table.filter(self.symbol_id == s.Id);
+            do{
+                try self.database.run(symbolToUpdate.update(symbol_image <- s.Symbol, symbol_signification <- s.Signification, symbol_commentary <- s.Commentary))
+                return true
+            }catch {
+                print (error)
+            }
+        }
+        return false
     }
     
     public func getAllSymbols()->[Symbol]{
