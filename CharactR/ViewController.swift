@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
     @IBOutlet var btn_back: UIButton!
     @IBOutlet var btn_front: UIButton!
     @IBOutlet var card: UIView!
@@ -29,7 +30,11 @@ class ViewController: UIViewController {
         menuView.layer.shadowOpacity = 0.5
         self.randomCard()
     }
-
+    
+    @IBAction func reinitDB(_ sender: UIButton) {
+        DbGetter.getInstance().reinitTable()
+    }
+    
     @IBAction func menuTap(_ sender: UIBarButtonItem) {
         self.toggleMenu()
     }

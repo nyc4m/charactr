@@ -56,7 +56,7 @@ class CharTable: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selected = DATAS[indexPath.row]
-        print(selected!.Symbol)
+        print(selected!.Id)
         performSegue(withIdentifier: "char_cell_to_details", sender: self)
     }
         

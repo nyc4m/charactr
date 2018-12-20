@@ -9,9 +9,18 @@
 import Foundation
 
 class Symbol {
+    
+    private let id: Int
     private var symbol: String
     private var signification: String
     private var commentary: String
+    
+    var Id: Int {
+        get {
+            return id
+        }
+    }
+    
     var Symbol: String {
         get{
             return symbol
@@ -32,9 +41,11 @@ class Symbol {
         self.symbol = "NO_SYMBOL_PATH"
         self.signification = "NO_SIGNIFICATION"
         self.commentary = "NO_COMMENTARY"
+        id = -1
     }
     
-    init(symbol: String, signification: String, commentary: String){
+    init(id: Int, symbol: String, signification: String, commentary: String){
+        self.id = id
         self.symbol = symbol
         self.signification = signification
         self.commentary = commentary

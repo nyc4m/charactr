@@ -20,6 +20,14 @@ class DbGetter{
     private let symbol_commentary = Expression<String>("commentary")
     private var table_created:Bool = false
     
+    private var pk = 1
+    var NextPK: Int {
+        get {
+            self.pk = pk + 1
+            return pk
+        }
+    }
+    
     private init(){
         do {
             let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -59,10 +67,10 @@ class DbGetter{
     }
     
     public func insertFakeDatas(){
-        self.insertSymbol(s: Symbol(symbol: "Yo", signification: "qzfqzfqf", commentary: ""))
-        self.insertSymbol(s: Symbol(symbol: "Ye", signification: "qzfqzfqf", commentary: ""))
-        self.insertSymbol(s: Symbol(symbol: "Ya", signification: "qzfqzfqf", commentary: ""))
-        self.insertSymbol(s: Symbol(symbol: "Yi", signification: "qzfqzfqf", commentary: ""))
+        self.insertSymbol(s: Symbol(id: NextPK, symbol: "汉语", signification: "qzfqzfqf", commentary: ""))
+        self.insertSymbol(s: Symbol(id: NextPK, symbol: "Ye", signification: "qzfqzfqf", commentary: ""))
+        self.insertSymbol(s: Symbol(id: NextPK, symbol: "Ya", signification: "qzfqzfqf", commentary: ""))
+        self.insertSymbol(s: Symbol(id: NextPK, symbol: "Yi", signification: "qzfqzfqf", commentary: ""))
         print("fake data loaded")
     }
     
@@ -82,7 +90,7 @@ class DbGetter{
     
     public func insertSymbol(s: Symbol){
         self.initTable()
-        let newInsertion = self.symbol_table.insert(symbol_image <- s.Symbol, symbol_signification <- s.Signification, symbol_commentary <- s.Commentary)
+        let newInsertion = self.symbol_table.insert(symbol_id <- s.Id, symbol_image <- s.Symbol, symbol_signification <- s.Signification, symbol_commentary <- s.Commentary)
         do{
             try database.run(newInsertion);
             print("\(s.Symbol) has been inserted in database")
@@ -108,7 +116,7 @@ class DbGetter{
         self.initTable()
         do{
             for symbol in try database.prepare(symbol_table) {
-                symbols.append(Symbol(symbol: symbol[symbol_image],signification: symbol[symbol_signification],commentary: symbol[symbol_commentary]))
+                symbols.append(Symbol(id: symbol[symbol_id], symbol: symbol[symbol_image],signification: symbol[symbol_signification],commentary: symbol[symbol_commentary]))
             }
         }catch{
             print (error)

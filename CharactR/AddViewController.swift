@@ -35,7 +35,7 @@ class AddViewController: UIViewController {
     }
     */
     @IBAction func onValidate(_ sender: UIButton) {
-        let symbol = Symbol(symbol: txt_symbol.text!, signification: txt_meaning.text!, commentary: "")
+        let symbol = Symbol(id: DbGetter.getInstance().NextPK, symbol: txt_symbol.text!, signification: txt_meaning.text!, commentary: "")
         
         DbGetter.getInstance().insertSymbol(s: symbol)
         print("salut")
