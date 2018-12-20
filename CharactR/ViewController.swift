@@ -18,17 +18,22 @@ class ViewController: UIViewController {
     @IBOutlet var centerConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    @IBOutlet var btn_validate: UIButton!
+    @IBOutlet var tf_answer: UITextField!
+    @IBOutlet var btn_tick: UIButton!
+    @IBOutlet var btn_cross: UIButton!
     
     private var centerConstraintDefault = CGFloat(0)
     private var menuIsHidden = true
     private var currentCardIsBack = false
     private let dbInstance: DbGetter = DbGetter.getInstance()
     private var currentSymbol: Symbol?
+    private var isFlippable: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         menuView.layer.shadowOpacity = 0.5
-        self.randomCard()
+        self.changeSymbol()
     }
     
     @IBAction func reinitDB(_ sender: UIButton) {
@@ -53,21 +58,51 @@ class ViewController: UIViewController {
         menuIsHidden = !menuIsHidden
     }
     @IBAction func flipCard(_ sender: UIButton) {
-        let toView = currentCardIsBack ? frontCard! : backCard!
-         let fromView = currentCardIsBack ? backCard! : frontCard!
-        UIView.transition(with: fromView, duration: 1.0, options: [.transitionFlipFromRight, .showHideTransitionViews], animations: {
-            fromView.isHidden = true
-        })
+        if isFlippable || !currentCardIsBack{
+            let toView = currentCardIsBack ? frontCard! : backCard!
+            let fromView = currentCardIsBack ? backCard! : frontCard!
+            UIView.transition(with: fromView, duration: 1.0, options: [.transitionFlipFromRight, .showHideTransitionViews], animations: {
+                fromView.isHidden = true
+            })
+            
+            UIView.transition(with: toView, duration: 1.0, options: [.transitionFlipFromRight, .showHideTransitionViews], animations: {
+                toView.isHidden = false
+            })
+            currentCardIsBack = !currentCardIsBack
+        }
         
-        UIView.transition(with: toView, duration: 1.0, options: [.transitionFlipFromRight, .showHideTransitionViews], animations: {
-            toView.isHidden = false
-        })
-        currentCardIsBack = !currentCardIsBack
     }
     private func randomCard(){
         let symbols = dbInstance.getAllSymbols()
         let randomNumber = Int(arc4random_uniform(UInt32(symbols.count)))
         self.currentSymbol = dbInstance.getAllSymbols()[randomNumber]
+    }
+    @IBAction func OnValidate(_ sender: UIButton) {
+        symbolValidationPhase(isValidatingTime: true)
+        
+    }
+    
+    private func symbolValidationPhase( isValidatingTime: Bool){
+        self.btn_validate.isHidden = isValidatingTime
+        self.tf_answer.isHidden = isValidatingTime
+        self.btn_tick.isHidden = !isValidatingTime
+        self.btn_cross.isHidden = !isValidatingTime
+        self.isFlippable = !isValidatingTime
+        self.flipCard(self.btn_validate)
+        
+    }
+    
+    @IBAction func goodAnswer(_ sender: UIButton) {
+        symbolValidationPhase(isValidatingTime: false)
+        self.changeSymbol()
+    }
+    @IBAction func badAnswer(_ sender: UIButton) {
+        symbolValidationPhase(isValidatingTime: false)
+        self.changeSymbol()
+    }
+    private func changeSymbol(){
+        self.randomCard()
+        self.btn_front.setTitle(self.currentSymbol?.Symbol, for: .normal)
     }
 }
 
