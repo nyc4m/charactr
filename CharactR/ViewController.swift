@@ -22,6 +22,12 @@ class ViewController: UIViewController {
     @IBOutlet var tf_answer: UITextField!
     @IBOutlet var btn_tick: UIButton!
     @IBOutlet var btn_cross: UIButton!
+    @IBOutlet var l_reponse: UILabel!
+    @IBOutlet var tv_signification: UITextView!
+    @IBOutlet var tv_commentaire: UITextView!
+    @IBOutlet var l_answer: UILabel!
+    @IBOutlet var l_signification: UILabel!
+    @IBOutlet var l_commentary: UILabel!
     
     private var centerConstraintDefault = CGFloat(0)
     private var menuIsHidden = true
@@ -79,7 +85,7 @@ class ViewController: UIViewController {
     }
     @IBAction func OnValidate(_ sender: UIButton) {
         symbolValidationPhase(isValidatingTime: true)
-        
+        self.l_reponse.text = self.tf_answer.text
     }
     
     private func symbolValidationPhase( isValidatingTime: Bool){
@@ -89,20 +95,27 @@ class ViewController: UIViewController {
         self.btn_cross.isHidden = !isValidatingTime
         self.isFlippable = !isValidatingTime
         self.flipCard(self.btn_validate)
-        
+        self.tv_signification.isHidden = !isValidatingTime
+        self.l_answer.isHidden = !isValidatingTime
+        self.l_signification.isHidden = !isValidatingTime
+        l_reponse.isHidden = !isValidatingTime
     }
     
     @IBAction func goodAnswer(_ sender: UIButton) {
         symbolValidationPhase(isValidatingTime: false)
         self.changeSymbol()
+        self.tf_answer.text = ""
     }
     @IBAction func badAnswer(_ sender: UIButton) {
         symbolValidationPhase(isValidatingTime: false)
         self.changeSymbol()
+        self.tf_answer.text = ""
     }
     private func changeSymbol(){
         self.randomCard()
         self.btn_front.setTitle(self.currentSymbol?.Symbol, for: .normal)
+        self.tv_commentaire.text = self.currentSymbol?.Commentary
+        self.tv_signification.text = self.currentSymbol?.Signification
     }
 }
 
