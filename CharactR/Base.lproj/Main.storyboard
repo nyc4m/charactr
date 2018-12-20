@@ -296,7 +296,6 @@
                                 <connections>
                                     <outlet property="labelMeaning" destination="kse-d9-BBn" id="gS8-CH-QnX"/>
                                     <outlet property="labelSymbol" destination="Xh2-sy-gdG" id="Rhq-MF-x4d"/>
-                                    <segue destination="5lk-ib-lT7" kind="show" identifier="char_cell_to_details" id="EtB-NH-pdq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -305,6 +304,9 @@
                             <outlet property="delegate" destination="bzH-Nv-oW9" id="1xR-Fa-hIY"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="5lk-ib-lT7" kind="show" identifier="char_cell_to_details" id="FMi-k7-1p1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ydb-Ox-sWj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -325,7 +327,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ea0-cR-To5">
-                                <rect key="frame" x="19" y="128" width="374" height="92"/>
+                                <rect key="frame" x="122" y="128" width="158" height="92"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -385,6 +387,7 @@
                     <connections>
                         <outlet property="tv_notePerso" destination="sE7-gd-Zu1" id="vJs-zQ-od6"/>
                         <outlet property="tv_signification" destination="uQ2-0d-gvG" id="JsR-wx-vas"/>
+                        <outlet property="tv_symbol" destination="ea0-cR-To5" id="Neb-fC-3ar"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QCI-hm-kqJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

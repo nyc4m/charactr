@@ -12,11 +12,22 @@ class DetailSymbolViewController: UIViewController {
 
     @IBOutlet weak var tv_signification: UITextView!
     @IBOutlet weak var tv_notePerso: UITextView!
+    @IBOutlet weak var tv_symbol: UITextField!
+    
+    var symbol, signification, commentary: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBorder(txtView: tv_signification)
         setBorder(txtView: tv_notePerso)
+        
+        //Le commentaire risque d'être nul (on est pas obligé d'en mettre un)
+        //donc on vérifie qu'il n'est pas nil, le cas échéant on ne l'affiche pas
+        if let note_perso_unwrapped = commentary{
+            tv_notePerso.text = note_perso_unwrapped
+        }
+        tv_symbol.text = symbol!
+        tv_signification.text = signification!
         // Do any additional setup after loading the view.
     }
 

@@ -49,12 +49,15 @@ class CharTable: UITableViewController {
         guard let controller = segue.destination as? DetailSymbolViewController else {
             fatalError("couldn't cast in correct type")
         }
-        
-        controller.tv_signification.text = selected?.Signification
+        controller.signification = selected?.Signification
+        controller.symbol = selected?.Symbol
+        controller.commentary = selected?.Commentary
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selected = DATAS[indexPath.row]
+        print(selected!.Symbol)
+        performSegue(withIdentifier: "char_cell_to_details", sender: self)
     }
         
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
