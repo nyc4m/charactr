@@ -23,6 +23,7 @@ class DbGetter{
     private var pk = 1
     var NextPK: Int {
         get {
+            //Faut trouver une meilleure façon, au redémarrage ce sera réinitialisé
             self.pk = pk + 1
             return pk
         }
