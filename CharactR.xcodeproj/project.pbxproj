@@ -13,7 +13,11 @@
 		7DF52CB021C9048400B90C6D /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF52C6D21C9042400B90C6D /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DF52CB521C9090100B90C6D /* CharCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF52CB421C9090100B90C6D /* CharCell.swift */; };
 		7DF52CB721C90B0100B90C6D /* CharTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF52CB621C90B0100B90C6D /* CharTable.swift */; };
+		E13A41FB21E39C4D00D3968A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13A41FA21E39C4D00D3968A /* LoginViewController.swift */; };
 		E140FE9121CA60E100DEFDF2 /* DetailSymbolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E140FE9021CA60E100DEFDF2 /* DetailSymbolViewController.swift */; };
+		E1A511A221E39FA20013D8DE /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A511A121E39FA20013D8DE /* CreateAccountViewController.swift */; };
+		E1A511C921E3A40D0013D8DE /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A511C021E3A3CB0013D8DE /* CryptoSwift.framework */; };
+		E1A511CA21E3A40D0013D8DE /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1A511C021E3A3CB0013D8DE /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E1AA4A8B21C1087D004AED6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AA4A8A21C1087D004AED6D /* AppDelegate.swift */; };
 		E1AA4A8D21C1087D004AED6D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AA4A8C21C1087D004AED6D /* ViewController.swift */; };
 		E1AA4A9021C1087D004AED6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1AA4A8E21C1087D004AED6D /* Main.storyboard */; };
@@ -180,6 +184,48 @@
 			remoteGlobalIDString = EE247AD21C3F04ED00AE3E12;
 			remoteInfo = "SQLite iOS";
 		};
+		E1A511BF21E3A3CB0013D8DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1A511B721E3A3CA0013D8DE /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 754BE45519693E190098E6F3;
+			remoteInfo = CryptoSwift;
+		};
+		E1A511C121E3A3CB0013D8DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1A511B721E3A3CA0013D8DE /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 75211F92207249D8004E41F8;
+			remoteInfo = "CryptoSwift-TestHostApp";
+		};
+		E1A511C321E3A3CB0013D8DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1A511B721E3A3CA0013D8DE /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 754BE46019693E190098E6F3;
+			remoteInfo = Tests;
+		};
+		E1A511C521E3A3CB0013D8DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1A511B721E3A3CA0013D8DE /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7595C14A2072E48C00EA1A5F;
+			remoteInfo = "TestsPerformance-Mac";
+		};
+		E1A511C721E3A3CB0013D8DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1A511B721E3A3CA0013D8DE /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7564F0602072EAEB00CA5A96;
+			remoteInfo = "TestsPerformance-iOS";
+		};
+		E1A511CB21E3A40D0013D8DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1A511B721E3A3CA0013D8DE /* CryptoSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 754BE45419693E190098E6F3;
+			remoteInfo = CryptoSwift;
+		};
 		E1AA4A9C21C1087F004AED6D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E1AA4A7F21C1087D004AED6D /* Project object */;
@@ -204,6 +250,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				7DF52CB021C9048400B90C6D /* SQLite.framework in Embed Frameworks */,
+				E1A511CA21E3A40D0013D8DE /* CryptoSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,7 +264,10 @@
 		7DF52C7A21C9044800B90C6D /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		7DF52CB421C9090100B90C6D /* CharCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharCell.swift; sourceTree = "<group>"; };
 		7DF52CB621C90B0100B90C6D /* CharTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharTable.swift; sourceTree = "<group>"; };
+		E13A41FA21E39C4D00D3968A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E140FE9021CA60E100DEFDF2 /* DetailSymbolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSymbolViewController.swift; sourceTree = "<group>"; };
+		E1A511A121E39FA20013D8DE /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		E1A511B721E3A3CA0013D8DE /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = "krzyzanowskim-CryptoSwift-c5ee516/CryptoSwift.xcodeproj"; sourceTree = "<group>"; };
 		E1AA4A8721C1087D004AED6D /* CharactR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CharactR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1AA4A8A21C1087D004AED6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1AA4A8C21C1087D004AED6D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +290,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A511C921E3A40D0013D8DE /* CryptoSwift.framework in Frameworks */,
 				7DF52CAF21C9048400B90C6D /* SQLite.framework in Frameworks */,
 				7DF52CAE21C9048000B90C6D /* SQLite.framework in Frameworks */,
 			);
@@ -304,6 +355,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E1A511B821E3A3CA0013D8DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1A511C021E3A3CB0013D8DE /* CryptoSwift.framework */,
+				E1A511C221E3A3CB0013D8DE /* CryptoSwift-TestHostApp.app */,
+				E1A511C421E3A3CB0013D8DE /* Tests.xctest */,
+				E1A511C621E3A3CB0013D8DE /* TestsPerformance-Mac.xctest */,
+				E1A511C821E3A3CB0013D8DE /* TestsPerformance-iOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E1AA4A7E21C1087D004AED6D = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +376,7 @@
 				E1AA4A8821C1087D004AED6D /* Products */,
 				7D7DC2B621C933DE0049BCE6 /* SQLite.xcodeproj */,
 				E1AA4AD021C108F7004AED6D /* Frameworks */,
+				E1A511B721E3A3CA0013D8DE /* CryptoSwift.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -341,6 +405,8 @@
 				E1AA4A9621C1087E004AED6D /* Info.plist */,
 				E1AA4AD821C10A01004AED6D /* DbGetter.swift */,
 				7DA22B9A21C81CA900A25553 /* AddViewController.swift */,
+				E13A41FA21E39C4D00D3968A /* LoginViewController.swift */,
+				E1A511A121E39FA20013D8DE /* CreateAccountViewController.swift */,
 			);
 			path = CharactR;
 			sourceTree = "<group>";
@@ -396,6 +462,7 @@
 			);
 			dependencies = (
 				7DF52CB221C9048400B90C6D /* PBXTargetDependency */,
+				E1A511CC21E3A40D0013D8DE /* PBXTargetDependency */,
 			);
 			name = CharactR;
 			productName = CharactR;
@@ -473,6 +540,10 @@
 			productRefGroup = E1AA4A8821C1087D004AED6D /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = E1A511B821E3A3CA0013D8DE /* Products */;
+					ProjectRef = E1A511B721E3A3CA0013D8DE /* CryptoSwift.xcodeproj */;
+				},
 				{
 					ProductGroup = 7DF52C6321C9042400B90C6D /* Products */;
 					ProjectRef = 7DF52C6221C9042400B90C6D /* SQLite.xcodeproj */;
@@ -643,6 +714,41 @@
 			remoteRef = 7DF52C9021C9044800B90C6D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		E1A511C021E3A3CB0013D8DE /* CryptoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoSwift.framework;
+			remoteRef = E1A511BF21E3A3CB0013D8DE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E1A511C221E3A3CB0013D8DE /* CryptoSwift-TestHostApp.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "CryptoSwift-TestHostApp.app";
+			remoteRef = E1A511C121E3A3CB0013D8DE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E1A511C421E3A3CB0013D8DE /* Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.xctest;
+			remoteRef = E1A511C321E3A3CB0013D8DE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E1A511C621E3A3CB0013D8DE /* TestsPerformance-Mac.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "TestsPerformance-Mac.xctest";
+			remoteRef = E1A511C521E3A3CB0013D8DE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E1A511C821E3A3CB0013D8DE /* TestsPerformance-iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "TestsPerformance-iOS.xctest";
+			remoteRef = E1A511C721E3A3CB0013D8DE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -677,6 +783,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A511A221E39FA20013D8DE /* CreateAccountViewController.swift in Sources */,
+				E13A41FB21E39C4D00D3968A /* LoginViewController.swift in Sources */,
 				7DA22B9B21C81CA900A25553 /* AddViewController.swift in Sources */,
 				E1AA4A8D21C1087D004AED6D /* ViewController.swift in Sources */,
 				E1AA4ADC21C10DE1004AED6D /* Symbol.swift in Sources */,
@@ -711,6 +819,11 @@
 			isa = PBXTargetDependency;
 			name = "SQLite iOS";
 			targetProxy = 7DF52CB121C9048400B90C6D /* PBXContainerItemProxy */;
+		};
+		E1A511CC21E3A40D0013D8DE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CryptoSwift;
+			targetProxy = E1A511CB21E3A40D0013D8DE /* PBXContainerItemProxy */;
 		};
 		E1AA4A9D21C1087F004AED6D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

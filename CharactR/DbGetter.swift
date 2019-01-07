@@ -8,16 +8,24 @@
 
 import UIKit
 import SQLite
+import CryptoSwift
 
 class DbGetter{
     
     private static var instance: DbGetter?;
     private var database: Connection!
+    
     private let symbol_table = Table("symbol")
     private let symbol_id = Expression<Int>("id")
     private let symbol_image = Expression<String>("image")
     private let symbol_signification = Expression<String>("signification")
     private let symbol_commentary = Expression<String>("commentary")
+    
+    private let user_table = Table("user")
+    private let user_id = Expression<Int>("id")
+    private let user_name = Expression<String>("username")
+    private let user_hash = Expression<String>("passwd_hash")
+    private let user_email = Expression<String>("email")
     private var table_created:Bool = false
     
     private init(){
@@ -42,14 +50,21 @@ class DbGetter{
         if !table_created{
             table_created = true
             // Instruction pour faire un create de la table USERS
-            let createTable = self.symbol_table.create { table in
+            let createTableSymbol = self.symbol_table.create { table in
                 table.column(self.symbol_id, primaryKey: .autoincrement)
                 table.column(self.symbol_image)
                 table.column(self.symbol_signification)
                 table.column(self.symbol_commentary)
             }
+            let createTableUser = self.user_table.create{ table in
+                table.column(self.user_id, primaryKey: .autoincrement)
+                table.column(self.user_name, unique: true)
+                table.column(self.user_hash)
+                table.column(self.user_email, unique: true)
+            }
             do{
-                try database.run(createTable)
+                try database.run(createTableSymbol)
+                try database.run(createTableUser)
                 self.insertFakeDatas()
             }catch{
                 print (error)
@@ -63,6 +78,7 @@ class DbGetter{
         self.insertSymbol(s: Symbol(symbol: "Ye", signification: "qzfqzfqf", commentary: ""))
         self.insertSymbol(s: Symbol(symbol: "Ya", signification: "qzfqzfqf", commentary: ""))
         self.insertSymbol(s: Symbol(symbol: "Yi", signification: "qzfqzfqf", commentary: ""))
+        self.createUserAccount(username: "Michel", password: "Ziboss", email: "Michelleking@gmail.com")
         print("fake data loaded")
     }
     
@@ -130,5 +146,32 @@ class DbGetter{
             print (error)
         }
         return symbols
+    }
+    
+    public func createUserAccount(username: String, password: String, email: String)->Bool{
+        let passwdHash = password.sha256()
+        let insert = self.user_table.insert(user_name <- username, user_hash <- passwdHash, user_email <- email)
+        do{
+            try self.database.run(insert)
+            return true
+        }catch{
+            print (error)
+        }
+        return false
+        
+    }
+    
+    public func askForConnexion(username: String, password: String) -> Bool{
+        let hashpwd = password.sha256();
+        let selectUser = user_table.filter(self.user_name == username && user_hash == hashpwd)
+        do{
+            let existing = try self.database.scalar(selectUser.count)
+            if existing == 1 {
+                return true
+            }
+        }catch{
+            print (error)
+        }
+        return false
     }
 }
