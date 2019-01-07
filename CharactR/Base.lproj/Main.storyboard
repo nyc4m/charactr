@@ -344,8 +344,12 @@
                         <outlet property="l_commentary" destination="FpE-bj-qIU" id="rqE-9u-oHe"/>
                         <outlet property="l_reponse" destination="Ymn-IX-d8F" id="xXw-y4-Bjf"/>
                         <outlet property="l_signification" destination="dpr-jA-3Pt" id="AfI-qP-P6D"/>
+                        <outlet property="lbl_answer" destination="I1d-eM-b7h" id="fL4-V0-sdF"/>
+                        <outlet property="lbl_gAnswer" destination="IOJ-Y4-ZRZ" id="Xi4-g5-HZW"/>
+                        <outlet property="lbl_percent" destination="km5-8j-9pY" id="h22-Mz-lyA"/>
                         <outlet property="leadingConstraint" destination="not-vP-MR5" id="mhY-Ib-Pm7"/>
                         <outlet property="menuView" destination="JcM-LS-rOW" id="Xo9-8p-MrS"/>
+                        <outlet property="reportView" destination="R41-o5-XSD" id="AQS-ud-leF"/>
                         <outlet property="tf_answer" destination="Rpd-KP-fCM" id="9V1-9c-TYe"/>
                         <outlet property="tv_commentaire" destination="voz-Aa-XqY" id="pod-Wf-by4"/>
                         <outlet property="tv_signification" destination="7tW-An-IWM" id="4GU-TI-IoC"/>
@@ -580,7 +584,6 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Z82-v7-cNU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4gZ-VS-ina">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

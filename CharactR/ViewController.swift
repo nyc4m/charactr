@@ -28,6 +28,9 @@ class ViewController: UIViewController {
     @IBOutlet var l_answer: UILabel!
     @IBOutlet var l_signification: UILabel!
     @IBOutlet var l_commentary: UILabel!
+    @IBOutlet var lbl_percent: UILabel!
+    @IBOutlet var lbl_gAnswer: UILabel!
+    @IBOutlet var lbl_answer: UILabel!
     
     private var centerConstraintDefault = CGFloat(0)
     private var menuIsHidden = true
@@ -35,14 +38,22 @@ class ViewController: UIViewController {
     private let dbInstance: DbGetter = DbGetter.getInstance()
     private var currentSymbol: Symbol?
     private var isFlippable: Bool = true
+    
+
+    @IBOutlet var reportView: UIView!
     private var nbGoodAnswer: Int = 0
     private let NB_ANSWER_PER_LIST: Int = 10
-    private var currentList : [Symbol]?
+    private var nbAnswerMaxInList: Int = 10
+    private var currentList : [Symbol] = []
+    private var nbAnswer: Int = 0
+    private var isReportTime : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         menuView.layer.shadowOpacity = 0.5
+        reportView.isHidden = true
         self.changeSymbol()
+        
     }
     
     @IBAction func reinitDB(_ sender: UIButton) {
@@ -82,17 +93,18 @@ class ViewController: UIViewController {
         
     }
     private func nextCard(){
-        if currentList == nil {
+        if self.currentList.isEmpty {
             var list = dbInstance.getAllSymbols()
-            for _ in 0..<NB_ANSWER_PER_LIST{
-                let rand = Int(arc4random_uniform(UInt32(NB_ANSWER_PER_LIST)))
-                self.currentList?.append(list[rand])
+            self.nbAnswerMaxInList = ( NB_ANSWER_PER_LIST > list.count) ? list.count: NB_ANSWER_PER_LIST
+            var nbSymbolList:Int = self.nbAnswerMaxInList-1
+            for _ in 0..<nbSymbolList{
+                let rand = Int(arc4random_uniform(UInt32(nbSymbolList)))
+                self.currentList.append(list[rand])
                 list.remove(at: rand)
+                nbSymbolList = nbSymbolList-1
             }
         }
-        let symbols = dbInstance.getAllSymbols()
-        let randomNumber = Int(arc4random_uniform(UInt32(symbols.count)))
-        self.currentSymbol = dbInstance.getAllSymbols()[randomNumber]
+        self.currentSymbol = self.currentList.popLast()
     }
     @IBAction func OnValidate(_ sender: UIButton) {
         symbolValidationPhase(isValidatingTime: true)
@@ -116,17 +128,47 @@ class ViewController: UIViewController {
         symbolValidationPhase(isValidatingTime: false)
         self.changeSymbol()
         self.tf_answer.text = ""
+        self.nbAnswer = self.nbAnswer+1
+        self.nbGoodAnswer = self.nbGoodAnswer+1
     }
     @IBAction func badAnswer(_ sender: UIButton) {
         symbolValidationPhase(isValidatingTime: false)
         self.changeSymbol()
         self.tf_answer.text = ""
+        self.nbAnswer = self.nbAnswer+1
     }
     private func changeSymbol(){
-        self.nextCard()
-        self.btn_front.setTitle(self.currentSymbol?.Symbol, for: .normal)
-        self.tv_commentaire.text = self.currentSymbol?.Commentary
-        self.tv_signification.text = self.currentSymbol?.Signification
+        if nbAnswer >= nbAnswerMaxInList {
+            reportView.isHidden = false
+            showReport()
+            isReportTime = true
+            nbAnswer = 0
+        }else {
+            if isReportTime {
+                nbAnswer = 0
+                isReportTime = false
+                reportView.isHidden = true
+                frontCard.isHidden = false
+                self.btn_validate.isHidden = false
+                self.tf_answer.isHidden = false
+                flipCard(self.btn_validate)
+            }
+            
+            self.nextCard()
+            self.btn_front.setTitle(self.currentSymbol?.Symbol, for: .normal)
+            self.tv_commentaire.text = self.currentSymbol?.Commentary
+            self.tv_signification.text = self.currentSymbol?.Signification
+        }
+    }
+    private func showReport(){
+        let percent = nbGoodAnswer*100/nbAnswerMaxInList
+        frontCard.isHidden = true
+        lbl_percent.text = "\(percent) %"
+        lbl_answer.text = "\(nbAnswer)"
+        lbl_gAnswer.text = "\(nbGoodAnswer)"
+        self.btn_tick.isHidden = false
+        self.btn_validate.isHidden = true
+        self.tf_answer.isHidden = true
     }
 }
 
