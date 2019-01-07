@@ -35,6 +35,9 @@ class ViewController: UIViewController {
     private let dbInstance: DbGetter = DbGetter.getInstance()
     private var currentSymbol: Symbol?
     private var isFlippable: Bool = true
+    private var nbGoodAnswer: Int = 0
+    private let NB_ANSWER_PER_LIST: Int = 10
+    private var currentList : [Symbol]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +81,15 @@ class ViewController: UIViewController {
         }
         
     }
-    private func randomCard(){
+    private func nextCard(){
+        if currentList == nil {
+            var list = dbInstance.getAllSymbols()
+            for _ in 0..<NB_ANSWER_PER_LIST{
+                let rand = Int(arc4random_uniform(UInt32(NB_ANSWER_PER_LIST)))
+                self.currentList?.append(list[rand])
+                list.remove(at: rand)
+            }
+        }
         let symbols = dbInstance.getAllSymbols()
         let randomNumber = Int(arc4random_uniform(UInt32(symbols.count)))
         self.currentSymbol = dbInstance.getAllSymbols()[randomNumber]
@@ -112,7 +123,7 @@ class ViewController: UIViewController {
         self.tf_answer.text = ""
     }
     private func changeSymbol(){
-        self.randomCard()
+        self.nextCard()
         self.btn_front.setTitle(self.currentSymbol?.Symbol, for: .normal)
         self.tv_commentaire.text = self.currentSymbol?.Commentary
         self.tv_signification.text = self.currentSymbol?.Signification
