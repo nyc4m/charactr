@@ -34,6 +34,7 @@ class DbGetter{
             let fileUrl = documentDirectory.appendingPathComponent("symbols").appendingPathExtension("sqlite3")
             let base = try Connection(fileUrl.path)
             self.database = base;
+            initTable()
         }catch {
             print(error)
         }

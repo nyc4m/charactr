@@ -14,7 +14,8 @@ class CharCell: UITableViewCell {
 
     @IBOutlet weak var labelSymbol: UILabel!
     @IBOutlet weak var labelMeaning: UILabel!
-    
+    var idx: Int!
+    var controller: CharTable?;
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,4 +27,7 @@ class CharCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func deleteCell(_ sender: Any) {
+        controller?.deleteCell(cell: self)
+    }
 }

@@ -72,7 +72,8 @@ class CharTable: UITableViewController {
         }
         
         let char = DATAS[indexPath.row]
-        
+        cell.idx = indexPath.row
+        cell.controller = self
         cell.labelSymbol.text = char.Symbol
         cell.labelMeaning.text = char.Signification
         
@@ -130,5 +131,12 @@ class CharTable: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    func deleteCell(cell : CharCell) {
+        if DbGetter.getInstance().removeSymbol(s: self.DATAS[cell.idx]){
+            DispatchQueue.main.async{
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
 }

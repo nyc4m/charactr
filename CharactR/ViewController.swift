@@ -16,8 +16,8 @@ class ViewController: UIViewController {
     @IBOutlet var frontCard: UIView!
     @IBOutlet var backCard: UIView!
     @IBOutlet var centerConstraint: NSLayoutConstraint!
-    @IBOutlet weak var menuView: UIView!
-    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    @IBOutlet var menuView: UIView!
+    @IBOutlet var leadingConstraint: NSLayoutConstraint!
     @IBOutlet var btn_validate: UIButton!
     @IBOutlet var tf_answer: UITextField!
     @IBOutlet var btn_tick: UIButton!
@@ -138,7 +138,7 @@ class ViewController: UIViewController {
         self.nbAnswer = self.nbAnswer+1
     }
     private func changeSymbol(){
-        if nbAnswer >= nbAnswerMaxInList {
+        if nbAnswer >= nbAnswerMaxInList{
             reportView.isHidden = false
             showReport()
             isReportTime = true
@@ -146,6 +146,7 @@ class ViewController: UIViewController {
         }else {
             if isReportTime {
                 nbAnswer = 0
+                nbGoodAnswer = 0
                 isReportTime = false
                 reportView.isHidden = true
                 frontCard.isHidden = false
