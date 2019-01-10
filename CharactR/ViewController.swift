@@ -32,6 +32,7 @@ class ViewController: UIViewController {
     @IBOutlet var lbl_gAnswer: UILabel!
     @IBOutlet var lbl_answer: UILabel!
     
+    @IBOutlet var btn_reload: UIButton!
     private var centerConstraintDefault = CGFloat(0)
     private var menuIsHidden = true
     private var currentCardIsBack = false
@@ -48,6 +49,7 @@ class ViewController: UIViewController {
     private var nbAnswer: Int = 0
     private var isReportTime : Bool = false
     
+    @IBOutlet var l_notEnoughSymbol: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         menuView.layer.shadowOpacity = 0.5
@@ -138,28 +140,37 @@ class ViewController: UIViewController {
         self.nbAnswer = self.nbAnswer+1
     }
     private func changeSymbol(){
-        if nbAnswer >= nbAnswerMaxInList{
-            reportView.isHidden = false
-            showReport()
-            isReportTime = true
-            nbAnswer = 0
-        }else {
-            if isReportTime {
+        var enoughChar = (dbInstance.getAllSymbols().count >= 5) ? true: false;
+        l_notEnoughSymbol.isHidden = enoughChar
+        card.isHidden = !enoughChar
+        tf_answer.isHidden = !enoughChar
+        btn_validate.isHidden = !enoughChar
+        btn_reload.isHidden = enoughChar
+        if enoughChar{
+            if nbAnswer >= nbAnswerMaxInList{
+                reportView.isHidden = false
+                showReport()
+                isReportTime = true
                 nbAnswer = 0
-                nbGoodAnswer = 0
-                isReportTime = false
-                reportView.isHidden = true
-                frontCard.isHidden = false
-                self.btn_validate.isHidden = false
-                self.tf_answer.isHidden = false
-                flipCard(self.btn_validate)
+            }else {
+                if isReportTime {
+                    nbAnswer = 0
+                    nbGoodAnswer = 0
+                    isReportTime = false
+                    reportView.isHidden = true
+                    frontCard.isHidden = false
+                    self.btn_validate.isHidden = false
+                    self.tf_answer.isHidden = false
+                    flipCard(self.btn_validate)
+                }
+                
+                self.nextCard()
+                self.btn_front.setTitle(self.currentSymbol?.Symbol, for: .normal)
+                self.tv_commentaire.text = self.currentSymbol?.Commentary
+                self.tv_signification.text = self.currentSymbol?.Signification
             }
-            
-            self.nextCard()
-            self.btn_front.setTitle(self.currentSymbol?.Symbol, for: .normal)
-            self.tv_commentaire.text = self.currentSymbol?.Commentary
-            self.tv_signification.text = self.currentSymbol?.Signification
         }
+        
     }
     private func showReport(){
         let percent = nbGoodAnswer*100/nbAnswerMaxInList
@@ -170,6 +181,9 @@ class ViewController: UIViewController {
         self.btn_tick.isHidden = false
         self.btn_validate.isHidden = true
         self.tf_answer.isHidden = true
+    }
+    @IBAction func reload(_ sender: Any) {
+        self.changeSymbol()
     }
 }
 

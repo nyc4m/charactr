@@ -79,6 +79,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mc4-i4-yUN">
+                                <rect key="frame" x="30" y="560" width="354" height="71"/>
+                                <state key="normal" title="Recharger le quiz !"/>
+                                <connections>
+                                    <action selector="reload:" destination="BYZ-38-t0r" eventType="touchUpInside" id="thm-hF-Uv1"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Veuillez inserer plus de 5 symboles dans votre dictionnaire si vous souhaitez faire des tests !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVt-aY-Pdg">
+                                <rect key="frame" x="29" y="239" width="356" height="258"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="258" id="E3o-M5-EiQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E0I-eZ-WMT">
                                 <rect key="frame" x="30" y="94" width="354" height="542"/>
                                 <subviews>
@@ -305,6 +321,7 @@
                         <color key="backgroundColor" red="0.98569993651883314" green="0.98545754165381994" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="DTf-AW-b0H" firstAttribute="leading" secondItem="Rpd-KP-fCM" secondAttribute="trailing" constant="8" id="04g-i6-Zds"/>
+                            <constraint firstItem="uVt-aY-Pdg" firstAttribute="centerX" secondItem="E0I-eZ-WMT" secondAttribute="centerX" id="6aU-lC-0JX"/>
                             <constraint firstItem="E0I-eZ-WMT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="G0g-WW-Smp"/>
                             <constraint firstItem="JcM-LS-rOW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="IYD-db-yb5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DTf-AW-b0H" secondAttribute="bottom" constant="20" id="Jrg-iF-vXh"/>
@@ -313,12 +330,18 @@
                             <constraint firstItem="peX-di-Wj8" firstAttribute="leading" secondItem="sti-pm-IEq" secondAttribute="trailing" constant="108" id="TqT-bk-LgL"/>
                             <constraint firstItem="peX-di-Wj8" firstAttribute="top" secondItem="E0I-eZ-WMT" secondAttribute="bottom" constant="15" id="UBd-eC-LmW"/>
                             <constraint firstItem="Rpd-KP-fCM" firstAttribute="top" secondItem="E0I-eZ-WMT" secondAttribute="bottom" constant="30" id="UiP-jp-zSv"/>
+                            <constraint firstItem="sti-pm-IEq" firstAttribute="top" secondItem="Mc4-i4-yUN" secondAttribute="bottom" constant="20" id="Yro-gR-t83"/>
+                            <constraint firstItem="uVt-aY-Pdg" firstAttribute="leading" secondItem="JcM-LS-rOW" secondAttribute="trailing" constant="29" id="aHd-rH-zdv"/>
+                            <constraint firstItem="uVt-aY-Pdg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="eDN-Fu-m7U"/>
                             <constraint firstItem="sti-pm-IEq" firstAttribute="leading" secondItem="JcM-LS-rOW" secondAttribute="trailing" constant="89" id="ePg-XM-g54"/>
                             <constraint firstItem="sti-pm-IEq" firstAttribute="top" secondItem="E0I-eZ-WMT" secondAttribute="bottom" constant="15" id="fjh-WG-BU4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Rpd-KP-fCM" secondAttribute="bottom" constant="20" id="gcv-HS-9E9"/>
                             <constraint firstItem="E0I-eZ-WMT" firstAttribute="leading" secondItem="JcM-LS-rOW" secondAttribute="trailing" constant="30" id="jGg-bN-7MI"/>
+                            <constraint firstItem="Mc4-i4-yUN" firstAttribute="leading" secondItem="Rpd-KP-fCM" secondAttribute="leading" id="lwo-Mi-aEw"/>
                             <constraint firstItem="JcM-LS-rOW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-200" id="not-vP-MR5"/>
                             <constraint firstItem="E0I-eZ-WMT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="ozr-sC-i0V"/>
+                            <constraint firstItem="Mc4-i4-yUN" firstAttribute="trailing" secondItem="DTf-AW-b0H" secondAttribute="trailing" id="yFJ-dv-nQ7"/>
+                            <constraint firstItem="Mc4-i4-yUN" firstAttribute="top" secondItem="uVt-aY-Pdg" secondAttribute="bottom" constant="63" id="yYm-5O-jt4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -335,6 +358,7 @@
                         <outlet property="btn_back" destination="Ds1-Fw-PZ8" id="lDG-59-ybp"/>
                         <outlet property="btn_cross" destination="peX-di-Wj8" id="ijb-3D-EYs"/>
                         <outlet property="btn_front" destination="Bsn-Gf-9uu" id="Bs5-g0-5W1"/>
+                        <outlet property="btn_reload" destination="Mc4-i4-yUN" id="tjX-0J-CCp"/>
                         <outlet property="btn_tick" destination="sti-pm-IEq" id="PM2-gX-MaH"/>
                         <outlet property="btn_validate" destination="DTf-AW-b0H" id="abP-8g-Q42"/>
                         <outlet property="card" destination="E0I-eZ-WMT" id="3oP-ZH-hS9"/>
@@ -342,6 +366,7 @@
                         <outlet property="frontCard" destination="dfi-Ek-Lzj" id="nsU-PH-a72"/>
                         <outlet property="l_answer" destination="vAZ-SD-N2F" id="xi8-nk-7Qx"/>
                         <outlet property="l_commentary" destination="FpE-bj-qIU" id="rqE-9u-oHe"/>
+                        <outlet property="l_notEnoughSymbol" destination="uVt-aY-Pdg" id="qwd-2b-H7m"/>
                         <outlet property="l_reponse" destination="Ymn-IX-d8F" id="xXw-y4-Bjf"/>
                         <outlet property="l_signification" destination="dpr-jA-3Pt" id="AfI-qP-P6D"/>
                         <outlet property="lbl_answer" destination="I1d-eM-b7h" id="fL4-V0-sdF"/>

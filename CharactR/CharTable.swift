@@ -133,9 +133,8 @@ class CharTable: UITableViewController {
     */
     func deleteCell(cell : CharCell) {
         if DbGetter.getInstance().removeSymbol(s: self.DATAS[cell.idx]){
-            DispatchQueue.main.async{
-                self.tableView.reloadData()
-            }
+            self.DATAS = DbGetter.getInstance().getAllSymbols()
+            self.tableView.reloadData()
         }
     }
     

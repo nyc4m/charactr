@@ -12,7 +12,6 @@ class AddViewController: UIViewController {
 
     @IBOutlet weak var txt_symbol: UITextField!
     @IBOutlet weak var txt_meaning: UITextView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBorder(txtView: txt_meaning)
@@ -38,6 +37,9 @@ class AddViewController: UIViewController {
         let symbol = Symbol(symbol: txt_symbol.text!, signification: txt_meaning.text!, commentary: "")
         let done = DbGetter.getInstance().insertSymbol(s: symbol)
         if done{
+            let reloadedView: ViewController = navigationController!.viewControllers[navigationController!.viewControllers.count-2] as! ViewController
+            reloadedView.reload(UIButton())
+            reloadedView.menuTap(UIBarButtonItem())
             navigationController?.popToRootViewController(animated: true)
         }
     }
