@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
             l_error.text = ""
             isConnected = true
             performSegue(withIdentifier: loginValidateSegue, sender: nil)
-            
+
         }else{
             l_error.text = "Nom d'utilisateur ou mot de passe inconnu"
         }

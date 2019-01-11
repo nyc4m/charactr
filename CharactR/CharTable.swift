@@ -21,7 +21,8 @@ class CharTable: UITableViewController {
     private var selected: Symbol?
     
     private func loadData() {
-        DATAS = DbGetter.getInstance().getAllSymbols()
+        DATAS = DbGetter.getInstance().getAllSymbolsFrom(user: "Michel")
+        
     }
 
     override func viewDidLoad() {
@@ -133,7 +134,7 @@ class CharTable: UITableViewController {
     */
     func deleteCell(cell : CharCell) {
         if DbGetter.getInstance().removeSymbol(s: self.DATAS[cell.idx]){
-            self.DATAS = DbGetter.getInstance().getAllSymbols()
+            self.DATAS = DbGetter.getInstance().getAllSymbolsFrom(user:"Michel")
             self.tableView.reloadData()
         }
     }

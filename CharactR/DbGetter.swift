@@ -26,7 +26,6 @@ class DbGetter{
     private let user_id = Expression<Int>("id")
     private let user_name = Expression<String>("username")
     private let user_hash = Expression<String>("passwd_hash")
-    private let user_email = Expression<String>("email")
     private var table_created:Bool = false
     
     private let dict_usr_table = Table("dict_usr_table")
@@ -38,7 +37,7 @@ class DbGetter{
             let documentDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             let fileUrl = documentDirectory.appendingPathComponent("symbols").appendingPathExtension("sqlite3")
             let base = try Connection(fileUrl.path)
-            self.database = base;
+            self.database = base
             initTable()
         }catch {
             print(error)
@@ -54,9 +53,11 @@ class DbGetter{
     
     public func initTable(){
         if !table_created{
+            
             table_created = true
+            self.reinitTable()
             // Instruction pour faire un create de la table USERS
-            let createTableSymbol = self.symbol_table.create { table in
+            let createTableSymbol = self.symbol_table.create(ifNotExists: true) { table in
                 table.column(self.symbol_id, primaryKey: .autoincrement)
                 table.column(self.symbol_image)
                 table.column(self.symbol_dictIdFK)
@@ -65,15 +66,14 @@ class DbGetter{
                 
                 table.foreignKey(self.symbol_dictIdFK, references: dict_usr_table, self.dict_usr_dictId, delete: .cascade)
             }
-            let createTableUser = self.user_table.create{ table in
+            let createTableUser = self.user_table.create(ifNotExists: true){ table in
                 table.column(self.user_id, primaryKey: .autoincrement)
                 table.column(self.user_name, unique: true)
                 table.column(self.user_hash)
-                table.column(self.user_email, unique: true)
             }
-            let createDictUsrTable = self.dict_usr_table.create{ table in
-                table.column(self.dict_usr_dictId, primaryKey: true)
-                table.column(self.dict_usr_usrIdFK, primaryKey: .autoincrement)
+            let createDictUsrTable = self.dict_usr_table.create(ifNotExists: true){ table in
+                table.column(self.dict_usr_dictId, primaryKey: .autoincrement)
+                table.column(self.dict_usr_usrIdFK)
                 
                 table.foreignKey(self.dict_usr_usrIdFK, references: user_table, self.user_id, delete:.cascade)
             }
@@ -86,15 +86,14 @@ class DbGetter{
                 print (error)
             }
         }
-        
     }
     
     public func insertFakeDatas(){
-        self.createUserAccount(username: "Michel", password: "Ziboss", email: "Michelleking@gmail.com")
-        self.insertSymbol(s: Symbol(symbol: "汉语", signification: "qzfqzfqf", commentary: ""))
-        self.insertSymbol(s: Symbol(symbol: "Ye", signification: "qzfqzfqf", commentary: ""))
-        self.insertSymbol(s: Symbol(symbol: "Ya", signification: "qzfqzfqf", commentary: ""))
-        self.insertSymbol(s: Symbol(symbol: "Yi", signification: "qzfqzfqf", commentary: ""))
+        self.createUserAccount(username: "Michel", password: "Ziboss")
+        self.insertSymbolFor(s: Symbol(symbol: "汉语", signification: "qzfqzfqf", commentary: ""), user: "Michel")
+        self.insertSymbolFor(s: Symbol(symbol: "Ye", signification: "qzfqzfqf", commentary: ""), user: "Michel")
+        self.insertSymbolFor(s: Symbol(symbol: "Ya", signification: "qzfqzfqf", commentary: ""), user: "Michel")
+        self.insertSymbolFor(s: Symbol(symbol: "Yi", signification: "qzfqzfqf", commentary: ""), user: "Michel")
         
         print("fake data loaded")
     }
@@ -102,8 +101,12 @@ class DbGetter{
     public func reinitTable(){
         if table_created{
             let dropTable = self.symbol_table.drop()
+            let dropUser = self.user_table.drop()
+            let dropDict = self.dict_usr_table.drop()
             do{
                 try database.run(dropTable)
+                try database.run(dropUser)
+                try database.run(dropDict)
             }catch{
                 print (error)
             }
@@ -113,16 +116,20 @@ class DbGetter{
         }
     }
     
-    public func insertSymbol(s: Symbol)->Bool{
+    public func insertSymbolFor(s: Symbol, user: String)->Bool{
         self.initTable()
-        let newInsertion = self.symbol_table.insert(symbol_image <- s.Symbol, symbol_signification <- s.Signification, symbol_commentary <- s.Commentary)
-        do{
-            try database.run(newInsertion);
-            print("\(s.stringify()) has been inserted in database")
-            return true
-        }catch{
-            print(error)
+        let dictId = self.getDictFrom(user: user)
+        if dictId != -1{
+            let newInsertion = self.symbol_table.insert(symbol_image <- s.Symbol, symbol_signification <- s.Signification, symbol_commentary <- s.Commentary, symbol_dictIdFK <- dictId)
+            do{
+                try database.run(newInsertion);
+                print("\(s.stringify()) has been inserted in database")
+                return true
+            }catch{
+                print(error)
+            }
         }
+        
         return false
     }
     
@@ -152,24 +159,31 @@ class DbGetter{
         return false
     }
     
-    public func getAllSymbols()->[Symbol]{
+    public func getAllSymbolsFrom(user: String)->[Symbol]{
         var symbols: [Symbol] = []
         self.initTable()
-        do{
-            for symbol in try database.prepare(symbol_table) {
-                symbols.append(Symbol(id: symbol[symbol_id], symbol: symbol[symbol_image],signification: symbol[symbol_signification],commentary: symbol[symbol_commentary]))
+        let dictId = self.getDictFrom(user: user)
+        
+        if(dictId != -1){
+            let symbolsFromUser = self.symbol_table.filter(symbol_dictIdFK == dictId)
+            do{
+                for symbol in try database.prepare(symbolsFromUser) {
+                    symbols.append(Symbol(id: symbol[symbol_id], symbol: symbol[symbol_image],signification: symbol[symbol_signification],commentary: symbol[symbol_commentary]))
+                }
+            }catch{
+                print (error)
             }
-        }catch{
-            print (error)
         }
+        
         return symbols
     }
     
-    public func createUserAccount(username: String, password: String, email: String)->Bool{
+    public func createUserAccount(username: String, password: String)->Bool{
         let passwdHash = password.sha256()
-        let insert = self.user_table.insert(user_name <- username, user_hash <- passwdHash, user_email <- email)
+        let insert = self.user_table.insert(user_name <- username, user_hash <- passwdHash)
         do{
             try self.database.run(insert)
+            self.createDict(user: username)
             return true
         }catch{
             print (error)
@@ -194,18 +208,45 @@ class DbGetter{
     
     public func createDict(user: String) -> Int{
         let selectUser = user_table.filter(user_name == user)
-        
         do{
-            if try self.database.scalar(selectUser.count) == 1 {
+            if userExisting(user: user) {
                 for user in try database.prepare(selectUser){
                     let id = user[user_id]
-                    let insert = self.dict_usr_table.insert(dict_usr_usrIdFK <- id);
+                    let insert = self.dict_usr_table.insert(dict_usr_usrIdFK <- id)
                     try self.database.run(insert)
                 }
             }
         }catch{
             print(error)
         }
-        return 0
+        return -1
+    }
+    
+    private func getDictFrom(user: String) -> Int{
+        if(self.userExisting(user: user)){
+            do{
+                let dict = user_table.join(self.dict_usr_table, on: dict_usr_usrIdFK == user_id)
+                let selectDict = dict.filter(user_name == user)
+                for user in try database.prepare(selectDict){
+                    let id = user[self.dict_usr_dictId]
+                    return id
+                }
+            }catch{
+                print(error)
+            }
+        }
+        return -1
+    }
+    
+    private func userExisting(user: String) -> Bool{
+        let user = self.user_table.filter(user_name == user)
+        do{
+            if(try self.database.scalar(user.count) == 1){
+                return true
+            }
+        }catch{
+            print(error)
+        }
+        return false
     }
 }

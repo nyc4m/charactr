@@ -35,7 +35,7 @@ class AddViewController: UIViewController {
     */
     @IBAction func onValidate(_ sender: UIButton) {
         let symbol = Symbol(symbol: txt_symbol.text!, signification: txt_meaning.text!, commentary: "")
-        let done = DbGetter.getInstance().insertSymbol(s: symbol)
+        let done = DbGetter.getInstance().insertSymbolFor(s: symbol, user: "Michel")
         if done{
             let reloadedView: ViewController = navigationController!.viewControllers[navigationController!.viewControllers.count-2] as! ViewController
             reloadedView.reload(UIButton())

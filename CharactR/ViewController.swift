@@ -33,12 +33,14 @@ class ViewController: UIViewController {
     @IBOutlet var lbl_answer: UILabel!
     
     @IBOutlet var btn_reload: UIButton!
+    
     private var centerConstraintDefault = CGFloat(0)
     private var menuIsHidden = true
     private var currentCardIsBack = false
     private let dbInstance: DbGetter = DbGetter.getInstance()
     private var currentSymbol: Symbol?
     private var isFlippable: Bool = true
+    var username: String = "null";
     
 
     @IBOutlet var reportView: UIView!
@@ -96,7 +98,7 @@ class ViewController: UIViewController {
     }
     private func nextCard(){
         if self.currentList.isEmpty {
-            var list = dbInstance.getAllSymbols()
+            var list = dbInstance.getAllSymbolsFrom(user: "Michel")
             self.nbAnswerMaxInList = ( NB_ANSWER_PER_LIST > list.count) ? list.count: NB_ANSWER_PER_LIST
             var nbSymbolList:Int = self.nbAnswerMaxInList-1
             for _ in 0..<nbSymbolList{
@@ -140,7 +142,7 @@ class ViewController: UIViewController {
         self.nbAnswer = self.nbAnswer+1
     }
     private func changeSymbol(){
-        var enoughChar = (dbInstance.getAllSymbols().count >= 5) ? true: false;
+        var enoughChar = (dbInstance.getAllSymbolsFrom(user: "Michel").count >= 5) ? true: false;
         l_notEnoughSymbol.isHidden = enoughChar
         card.isHidden = !enoughChar
         tf_answer.isHidden = !enoughChar
