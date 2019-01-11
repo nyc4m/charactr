@@ -13,9 +13,7 @@
 		7DF52CB021C9048400B90C6D /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF52C6D21C9042400B90C6D /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7DF52CB521C9090100B90C6D /* CharCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF52CB421C9090100B90C6D /* CharCell.swift */; };
 		7DF52CB721C90B0100B90C6D /* CharTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF52CB621C90B0100B90C6D /* CharTable.swift */; };
-		E13A41FB21E39C4D00D3968A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13A41FA21E39C4D00D3968A /* LoginViewController.swift */; };
 		E140FE9121CA60E100DEFDF2 /* DetailSymbolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E140FE9021CA60E100DEFDF2 /* DetailSymbolViewController.swift */; };
-		E1A511A221E39FA20013D8DE /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A511A121E39FA20013D8DE /* CreateAccountViewController.swift */; };
 		E1A511C921E3A40D0013D8DE /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A511C021E3A3CB0013D8DE /* CryptoSwift.framework */; };
 		E1A511CA21E3A40D0013D8DE /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1A511C021E3A3CB0013D8DE /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E1AA4A8B21C1087D004AED6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AA4A8A21C1087D004AED6D /* AppDelegate.swift */; };
@@ -264,9 +262,7 @@
 		7DF52C7A21C9044800B90C6D /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		7DF52CB421C9090100B90C6D /* CharCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharCell.swift; sourceTree = "<group>"; };
 		7DF52CB621C90B0100B90C6D /* CharTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharTable.swift; sourceTree = "<group>"; };
-		E13A41FA21E39C4D00D3968A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E140FE9021CA60E100DEFDF2 /* DetailSymbolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSymbolViewController.swift; sourceTree = "<group>"; };
-		E1A511A121E39FA20013D8DE /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		E1A511B721E3A3CA0013D8DE /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = "krzyzanowskim-CryptoSwift-c5ee516/CryptoSwift.xcodeproj"; sourceTree = "<group>"; };
 		E1AA4A8721C1087D004AED6D /* CharactR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CharactR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1AA4A8A21C1087D004AED6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -405,8 +401,6 @@
 				E1AA4A9621C1087E004AED6D /* Info.plist */,
 				E1AA4AD821C10A01004AED6D /* DbGetter.swift */,
 				7DA22B9A21C81CA900A25553 /* AddViewController.swift */,
-				E13A41FA21E39C4D00D3968A /* LoginViewController.swift */,
-				E1A511A121E39FA20013D8DE /* CreateAccountViewController.swift */,
 			);
 			path = CharactR;
 			sourceTree = "<group>";
@@ -783,8 +777,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1A511A221E39FA20013D8DE /* CreateAccountViewController.swift in Sources */,
-				E13A41FB21E39C4D00D3968A /* LoginViewController.swift in Sources */,
 				7DA22B9B21C81CA900A25553 /* AddViewController.swift in Sources */,
 				E1AA4A8D21C1087D004AED6D /* ViewController.swift in Sources */,
 				E1AA4ADC21C10DE1004AED6D /* Symbol.swift in Sources */,
